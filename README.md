@@ -1,4 +1,4 @@
-# vue-wechat-auth
+# vue-wechat-login
 
 ##微信测试号
 打开注册的网址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
