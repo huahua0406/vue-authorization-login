@@ -4,6 +4,10 @@
 
 1. 微信测试号申请：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 2. 填写授权回调域名
+![Image text](https://github.com/huahua0406/vue-wechat-login/master/static/img1.png)
+![Image text](https://github.com/huahua0406/vue-wechat-login/master/static/img2.png)
+
+
 
 ## 运行&调试
 

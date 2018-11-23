@@ -33,6 +33,14 @@ const router = new Router({
         title: 'User'
       },
       component: () => import('@/views/User')
+    },
+    {
+      path: '/list',
+      name: 'List',
+      meta: {
+        title: 'List'
+      },
+      component: () => import('@/views/List')
     }
   ]
 })

@@ -15,8 +15,51 @@ let redirectUrl = encodeURIComponent(`${host}/get_userinfo`)
 let authorizeUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=` +
     `${redirectUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
 
-app.get('/', function (req, res) {
-    res.send('hello world')
+// 测试静默授权 用户是否关注过公众号
+app.get('/test', async function (req, res) {
+    const code = req.query.code
+    if(code){
+        // code存在 跳转前端页面
+        const result = await getAccessToken(code)
+        const {  openid } = result
+        // 获取公众号的access_token，此access_token不是用户授权后的access_token
+        const get_token_url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appID}&secret=${appSecret}`
+        https.get(get_token_url, (res) =>{
+            let data = ''
+            res.on('data', (chunk) => {
+                data += chunk
+            })
+            res.on('end', () => {
+                const { access_token } = JSON.parse(data);
+                // console.log(`data=${data}`);
+                // console.log(`access_token=${access_token}`);
+                // 判断用户是否关注公众号
+                const get_subscribe_url = `https://api.weixin.qq.com/cgi-bin/user/info?access_token=${access_token}&openid=${openid}`;
+                https.get(get_subscribe_url,r=>{
+                    let ret = ''
+                    r.on('data', (chunk) => {
+                        ret += chunk
+                    })
+                    r.on('end', ()=>{
+                        console.log(`关注信息${ret}`);
+                    })
+                })
+            })
+        }).on('error', (err) => {
+            console.log(err)
+        })
+    }else{
+        // 进行微信授权
+        let callbackUrl = 'http://127.0.0.1:3000/test'
+        let getCodeUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=` +
+        `${callbackUrl}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`
+        res.writeHead(302, {
+            'Location': getCodeUrl
+        });
+        res.end();
+    }
+
+
 })
 
 app.get('/get_wxauth', function (req, res) {
