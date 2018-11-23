@@ -1,7 +1,10 @@
-# vue-wechat-login
+# 微信网页授权demo
 
-## 微信测试号
-打开注册的网址：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
+## 调试
+
+1. 微信测试号申请：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
+2. 填写授权回调域名
+
 > A Vue.js project
 
 ## Build Setup
