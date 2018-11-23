@@ -10,8 +10,9 @@ const instance = axios.create({
 
 // 环境切换
 if (process.env.NODE_ENV === 'development') {
-  instance.defaults.baseURL = '/apis' // 开发环境设置代理url:apis
-//   instance.defaults.baseURL = 'http://127.0.0.1:3000'
+  // 开发环境设置代理 ==> apis
+  // instance.defaults.baseURL = '/apis'
+  instance.defaults.baseURL = 'http://127.0.0.1:3000'
 } else if (process.env.NODE_ENV === 'debug') {
   instance.defaults.baseURL = 'https://www.test.com'
 } else if (process.env.NODE_ENV === 'production') {

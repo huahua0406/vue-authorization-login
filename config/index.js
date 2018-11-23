@@ -17,7 +17,7 @@ module.exports = {
             pathRewrite:{
               '^/apis':'/'
             }
-          },
+        },
     },
 
     // Various Dev Server settings

@@ -3,6 +3,8 @@ var express = require('express')
 var app = express()
 var https = require('https')
 // 引入cors
+var cors = require('cors');
+app.use(cors())
 
 const appID = 'wx6ba8da52cc23c927'
 const appSecret = 'c11fd7eca16a1c690fb8f436093182c1'
@@ -131,4 +133,4 @@ function getUserInfo(access_token, openid) {
     })
 }
 
-app.listen(3000, () => console.log('server is running at http://localhost:3000'))
+app.listen(3000, () => console.log('CORS-enabled web server listening is running at http://localhost:3000'))
