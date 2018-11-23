@@ -5,8 +5,6 @@
 1. 微信测试号申请：http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login
 2. 填写授权回调域名
 
-> A Vue.js project
-
 ## 运行&调试
 
 ``` bash
