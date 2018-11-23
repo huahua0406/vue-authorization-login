@@ -7,10 +7,10 @@
 
 > A Vue.js project
 
-## 运行
+## 运行&调试
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
 # 启动 localhost:8080
