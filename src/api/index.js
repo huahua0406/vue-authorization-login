@@ -9,7 +9,7 @@ export default {
   getWxAuth (req) {
     return axios.get(`/get_wxauth`, req)
   },
-  getUserInfo (req) {
-    return axios.post(`/get_userinfo`, req)
+  getUserInfo (data) {
+    return axios.post(`/get_userinfo`, data)
   }
 }

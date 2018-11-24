@@ -20,6 +20,7 @@ export default {
       console.log('登录成功')
       const msg = getQueryString('msg')
       if ((Number(msg) === 200)) {
+        // 获取微信code
         const token = getQueryString('token')
         // 存储token到本地
         window.localStorage.setItem('token', token)
