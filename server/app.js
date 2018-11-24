@@ -9,11 +9,11 @@ app.use(cors())
 const appID = 'wx6ba8da52cc23c927'
 const appSecret = 'c11fd7eca16a1c690fb8f436093182c1'
 
-// 授权域名
+// 授权回调域名
 let host = `http://127.0.0.1:3000`
 // 授权后重定向url地址
 let redirectUrl = encodeURIComponent(`${host}/wechat_login`)
-// 微信授权api,接口返回code,点击授权后跳转到重定向地址并带上code参数
+// 微信授权url地址,点击授权后跳转到重定向地址并带上code参数
 let authorizeUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=` +
     `${redirectUrl}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`
 
@@ -31,7 +31,6 @@ app.get('/wechat_login', function (req, res) {
 })
 
 async function wxLogin(req, res) {
-    console.log(req.query)
     // 解析querystring获取URL中的code值
     const code = req.query.code
     // 通过拿到的code和appID、appSerect获取返回信息
@@ -40,7 +39,6 @@ async function wxLogin(req, res) {
     const { access_token, openid } = result
     // 通过上一步获取的access_token和open_id获取userInfo即用户信息
     let userInfo = await getUserInfo(access_token, openid)
-    console.log(openid)
     console.log(userInfo)
     const token = openid
     const msg = 200
@@ -144,7 +142,7 @@ app.get('/test', async function (req, res) {
         const retToken = await getToken(appID,appSecret)
         const { access_token } = retToken
         const subscribeInfo = await getSubscribeMsg(access_token,openid)
-        console.log(subscribeInfo);
+        console.log(subscribeInfo)
     }else{
         // 进行微信授权
         let callbackUrl = encodeURIComponent('http://127.0.0.1:3000/test')
