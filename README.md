@@ -6,7 +6,7 @@
 2. 填写授权回调域名
 ![Image text](https://github.com/huahua0406/vue-wechat-login/blob/master/static/img1.png)
 ![Image text](https://github.com/huahua0406/vue-wechat-login/blob/master/static/img2.png)
-
+3.下载微信开发者工具开始调试：https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html
 
 
 ## 运行&调试
