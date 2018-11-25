@@ -162,7 +162,7 @@ app.get('/test', async function (req, res) {
 })
 
 // 获取基础token，注意：获取公众号的access_token，此access_token不是用户授权后的access_token
-// 文档：
+// 文档：https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140183
 function getToken(appid, appsecret) {
     return new Promise((resolve, reject) => {
         const get_token_url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appid}&secret=${appsecret}`
@@ -181,12 +181,11 @@ function getToken(appid, appsecret) {
         })
     })
 }
-// 获取用户是否关注该公众号
+// 获取用户基本信息 判断是否关注该公众号
 function getSubscribeMsg(access_token, openid) {
     return new Promise((resolve, reject) => {
-        // todo:
-        // 文档：
-        const get_subscribe_url = `https://api.weixin.qq.com/cgi-bin/user/info?access_token=${access_token}&openid=${openid}`
+        // 文档：https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140839
+        const get_subscribe_url = `https://api.weixin.qq.com/cgi-bin/user/info?access_token=${access_token}&openid=${openid}&lang=zh_CN`
         https.get(get_subscribe_url, (res) => {
             res.setEncoding('utf8') // 设置编码为 utf8
             let rawData = '' // 原始数据
