@@ -26,7 +26,7 @@ export default {
         window.localStorage.setItem('token', token)
         // 获取beforeLoginUrl 页面地址
         const url = window.localStorage.getItem('beforeLoginUrl')
-        console.log(url, 555)
+        console.log(url, token, 333)
         // 跳转
         this.$router.replace(url)
         // 删除本地beforeLoginUrl

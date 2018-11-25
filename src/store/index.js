@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 // 修改state的时候会在控制台打印一些信息
 import createLogger from 'vuex/dist/logger'
 
-import api from '../../api'
+import api from '../api'
 const {getUserInfo} = api
 
 Vue.use(Vuex)
@@ -31,7 +31,7 @@ export default new Vuex.Store({
     getUserInfo ({ state, commit }) {
       return new Promise((resolve, reject) => {
         try {
-          getUserInfo(state.token).then(res => {
+          getUserInfo().then(res => {
             const data = res.data
             commit('setUserInfo', data)
             resolve(data)

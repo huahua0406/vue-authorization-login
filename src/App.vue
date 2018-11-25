@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <div style="line-height:50px;">
+        <router-link to="/home">Home</router-link>
+        <router-link to="/list">List</router-link>
+        <router-link to="/user">User</router-link>
+    </div>
+    <hr>
     <router-view/>
   </div>
 </template>
@@ -23,6 +29,5 @@ html,body{
 #app {
   height: 100%;
   text-align: center;
-  margin-top: 60px;
 }
 </style>
