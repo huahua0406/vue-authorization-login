@@ -22,6 +22,7 @@ npm run dev
 
 # 启动expres服务器 127.0.0.1:3000
 cd server
+npm install
 node app
 
 ```
