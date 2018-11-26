@@ -1,6 +1,5 @@
 // 对axios的二次封装
 import axios from 'axios' // 引入axios
-import router from '@/router'
 import Qs from 'qs' // 引入qs模块，用来序列化post类型的数据
 
 // 创建axios实例
@@ -53,55 +52,7 @@ instance.interceptors.response.use(
     }
   },
   error => {
-    if (error.response.status) {
-      switch (error.response.status) {
-        // 401: 未登录状态，跳转登录页
-        case 401:
-          router.replace({
-            path: '/login',
-            query: {
-              redirect: router.currentRoute.fullPath
-            }
-          })
-          break
-
-          // 403 token过期 清除token并跳转登录页
-        case 403:
-        //   Message({
-        //     duration: 2000,
-        //     message: '登录过期，请重新登录',
-        //     type: 'error'
-        //   })
-          // 清除token
-          window.localStorage.removeItem('token')
-          // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
-          setTimeout(() => {
-            router.replace({
-              path: '/login',
-              query: {
-                redirect: router.currentRoute.fullPath
-              }
-            })
-          }, 1000)
-          break
-          // 404请求不存在
-        case 404:
-        //   Message({
-        //     duration: 2000,
-        //     message: '请求不存在',
-        //     type: 'error'
-        //   })
-          break
-          // 其他错误，直接抛出错误提示
-        default:
-        //   Message({
-        //     duration: 2000,
-        //     message: error.response.data.message,
-        //     type: 'error'
-        //   })
-      }
-      return Promise.reject(error.response)
-    }
+    return Promise.reject(error)
   }
 )
 

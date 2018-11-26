@@ -23,7 +23,7 @@ const appSecret = 'c11fd7eca16a1c690fb8f436093182c1'
 
 // 授权回调域名
 let host = `http://127.0.0.1:3000`
-// 授权后重定向url地址
+// 授权后重定向url地址 注意是编码后url，不编码#后面的参数会消失
 let redirectUrl = encodeURIComponent(`${host}/wechat_login`)
 // 微信授权url地址,点击授权后跳转到重定向地址并带上code参数
 let authorizeUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=` +
@@ -38,11 +38,7 @@ app.get('/get_wxauth', function (req, res) {
 })
 
 // 微信授权回调的接口
-app.get('/wechat_login', function (req, res) {
-    wxLogin(req, res)
-})
-
-async function wxLogin(req, res) {
+app.get('/wechat_login', async function (req, res) {
     // 解析querystring获取URL中的code值
     const code = req.query.code
     // 通过拿到的code和appID、appSerect获取返回信息
@@ -62,7 +58,7 @@ async function wxLogin(req, res) {
         'Location': redirectUrl
     })
     res.end()
-}
+})
 
 // 通过拿到的code和appID、app_serect获取access_token和open_id
 function getAccessToken(code) {

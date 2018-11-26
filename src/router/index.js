@@ -57,12 +57,11 @@ router.beforeEach((to, from, next) => {
     window.localStorage.setItem('beforeLoginUrl', to.fullPath)
     next('/author')
   } else if (token && !store.getters.userInfo) {
-    console.log(111)
     // 拉取用户信息
     store.dispatch('getUserInfo').catch(err => {
       console.log(err)
-    //   window.localStorage.removeItem('token')
-    //   router.go(0)
+      window.localStorage.removeItem('token')
+      router.go(0)
     })
     next()
   } else {

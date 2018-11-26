@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 import createLogger from 'vuex/dist/logger'
 
 import api from '../api'
-const {getUserInfo} = api
+const { getUserInfo } = api
 
 Vue.use(Vuex)
 
@@ -15,7 +15,6 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('token') ? localStorage.getItem('token') : '', // 防止刷新从本地获取
     userInfo: null
   },
   getters: {
